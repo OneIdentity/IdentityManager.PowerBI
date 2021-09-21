@@ -1,4 +1,4 @@
-# Power BI Custom Connector for One Idenity Manager
+# Power BI Custom Connector for One Identity Manager
 
 This is a simple Power BI Custom Connector for [One Identity' Identity Manager](https://www.oneidentity.com/products/identity-manager/)
 
