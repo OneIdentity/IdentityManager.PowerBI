@@ -1,5 +1,7 @@
 # Power BI Custom Connector for One Identity Manager
 
+One Identity open source projects are supported through One Identity GitHub issues and the One Identity Community. This includes all scripts, plugins, SDKs, modules, code snippets or other solutions. For assistance with any One Identity GitHub project, please raise a new Issue on the One Identity GitHub project page. You may also visit the One Identity Community to ask questions. Requests for assistance made through official One Identity Support will be referred back to GitHub and the One Identity Community forums where those requests can benefit all users.
+
 This is a simple Power BI Custom Connector for [One Identity' Identity Manager](https://www.oneidentity.com/products/identity-manager/)
 
 
