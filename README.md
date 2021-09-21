@@ -8,7 +8,7 @@ The Power BI connector for One Identity Manager is built for replacing the requi
   - using https as a protocol instead of SQL
   - by requiring a One Identity Manager authentication the permissions layer in One Identity Manager ensuring that users only get information they are supposed to see.
 
-Once the customer connector reaches it stable status, One Identity will be seeking certification by Microsoft.
+Once the custom connector reaches it stable status, One Identity will be seeking certification by Microsoft.
 
 ## Additional information regarding Power BI
 
