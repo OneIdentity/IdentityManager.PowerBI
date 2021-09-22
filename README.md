@@ -24,6 +24,10 @@ Once the custom connector reaches it stable status, One Identity will be seeking
 
   - https://github.com/Microsoft/DataConnectors
 
+### Language reference
+
+Custom data connectors are written with the Power Query M formula language. A language reference can be found here [https://docs.microsoft.com/en-us/powerquery-m/](https://docs.microsoft.com/en-us/powerquery-m/)
+
 ### Certified connectors
 
   - https://docs.microsoft.com/en-us/power-query/connectorcertification
@@ -39,3 +43,4 @@ Once the custom connector reaches it stable status, One Identity will be seeking
   - https://docs.microsoft.com/de-de/power-bi/connect-data/desktop-data-sources
   - https://www.youtube.com/watch?v=AGrl-H87pRU
   - https://www.youtube.com/watch?v=tjcj0vAPZiY
+  - https://www.youtube.com/watch?v=Llh86eUqGXU
