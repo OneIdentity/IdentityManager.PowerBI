@@ -32,7 +32,7 @@ Once the custom connector reaches it stable status, One Identity will be seeking
 1. Install [Microsoft Visual Studio 2019](https://visualstudio.microsoft.com/vs/)
 2. Install the [Power Query SDK](https://aka.ms/powerquerysdk) from the Visual Studio Marketplace
 3. Clone [this project](https://github.com/OneIdentity/IdentityManager.PowerBI)
-4. Modify the values for `token_uri`, `authorize_uri` and `logout_uri` to match your installation of the Secure Token Server (STS) which is part of the [One Identity' Identity Manager](https://www.oneidentity.com/products/identity-manager/)
+4. Modify the values for `token_uri`, `authorize_uri` and `logout_uri` in file [IdentityManager.pq](https://github.com/OneIdentity/IdentityManager.PowerBI/blob/master/src/IdentityManager/IdentityManager.pq) to match your installation of the Secure Token Server (STS) which is part of the [One Identity' Identity Manager](https://www.oneidentity.com/products/identity-manager/)
 5. Compile the project
 6. Copy the resulting `IdentityManager.mez` file over to the machine running Microsoft Power BI Desktop
 7. If not already done, create a folder structure as `Microsoft Power BI Desktop\Custom Connectors` under your documents directory (`C:\Users\<Your-Profile-Name>\Documents\`) and place the `IdentityManager.mez` file there
