@@ -7,7 +7,7 @@ authorize_uri = "https://w1/RSTS/Login";
 logout_uri = "https://w1/RSTS/Login?wa=wsignout1.0";
 
 windowWidth = 720;
-windowHeight = 800;
+windowHeight = 500;
 
 [DataSource.Kind="IdentityManager", Publish="IdentityManager.Publish"]
 shared IdentityManager.Contents = (#"Application Server url" as text, Table as text) =>
@@ -59,8 +59,8 @@ StartLogin = (resourceUrl, state, display) =>
         [
             LoginUri = authorizeUrl,
             CallbackUri = redirect_uri,
-            WindowHeight = 720,
-            WindowWidth = 1024,
+            WindowHeight = windowHeight,
+            WindowWidth = windowWidth,
             Context = null
         ];
 
