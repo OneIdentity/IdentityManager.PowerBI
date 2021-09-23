@@ -7,16 +7,28 @@ authorize_uri = "https://w1/RSTS/Login";
 logout_uri = "https://w1/RSTS/Login?wa=wsignout1.0";
 
 windowWidth = 720;
-windowHeight = 1024;
+windowHeight = 800;
 
 [DataSource.Kind="IdentityManager", Publish="IdentityManager.Publish"]
 shared IdentityManager.Contents = (#"Application Server url" as text, Table as text) =>
     let
         _url = Diagnostics.LogValue("Application Server url", #"Application Server url"),
         _table = Diagnostics.LogValue("Get entities for", Table),
-        finaleURL = _url & _table,
 
-        source = Json.Document(Web.Contents(finaleURL))
+        /*
+        loadType can be:
+          * Default
+          * Slim
+          * ForeignDisplays
+          * ForeignDisplaysForAllColumns
+          * BulkReadOnly
+          * LoadForeignDisplaysEvenWhenExpensive
+        */
+        _loadType = "BulkReadOnly",
+        finaleURL = Uri.Combine(_url, _table) & "?" & Uri.BuildQueryString([loadType=_loadType]),
+
+        _json = Json.Document(Web.Contents(finaleURL)),
+        source = if Table.HasColumns(Table.FromRecords(_json), "values") then Table.FromRecords(Table.FromRecords(_json)[values]) else Table.FromRecords(_json)
     in
         source;
 
