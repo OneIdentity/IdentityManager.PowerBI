@@ -10,11 +10,15 @@ windowWidth = 720;
 windowHeight = 1024;
 
 [DataSource.Kind="IdentityManager", Publish="IdentityManager.Publish"]
-shared IdentityManager.Contents = (url as text) =>
+shared IdentityManager.Contents = (#"Application Server url" as text, Table as text) =>
     let
-        source = Json.Document(Web.Contents(url))
+        _url = Diagnostics.LogValue("Application Server url", #"Application Server url"),
+        _table = Diagnostics.LogValue("Get entities for", Table),
+        finaleURL = _url & _table,
+
+        source = Json.Document(Web.Contents(finaleURL))
     in
-        source; 
+        source;
 
 IdentityManager = [
     TestConnection = (dataSourcePath) => { "IdentityManager.Contents", dataSourcePath },
@@ -101,3 +105,21 @@ IdentityManager.Icons = [
     Icon16 = { Extension.Contents("IdentityManager16.png"), Extension.Contents("IdentityManager20.png"), Extension.Contents("IdentityManager24.png"), Extension.Contents("IdentityManager32.png") },
     Icon32 = { Extension.Contents("IdentityManager32.png"), Extension.Contents("IdentityManager40.png"), Extension.Contents("IdentityManager48.png"), Extension.Contents("IdentityManager64.png") }
 ];
+
+// Taken from: https://github.com/microsoft/DataConnectors/blob/master/samples/TripPin/8-Diagnostics/TripPin.pq
+// 
+// Load common library functions
+//
+
+// TEMPORARY WORKAROUND until we're able to reference other M modules
+Extension.LoadFunction = (name as text) =>
+    let
+        binary = Extension.Contents(name),
+        asText = Text.FromBinary(binary)
+    in
+        Expression.Evaluate(asText, #shared);
+
+// Diagnostics module contains multiple functions. We can take the ones we need.
+Diagnostics = Extension.LoadFunction("Diagnostics.pqm");
+Diagnostics.LogValue = Diagnostics[LogValue];
+Diagnostics.LogFailure = Diagnostics[LogFailure];
