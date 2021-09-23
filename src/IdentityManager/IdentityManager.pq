@@ -9,26 +9,37 @@ logout_uri = "https://w1/RSTS/Login?wa=wsignout1.0";
 windowWidth = 720;
 windowHeight = 500;
 
+// [DataSource.Kind="IdentityManager", Publish="IdentityManager.Publish"]
+// shared IdentityManager.Contents = (#"Application Server url" as text, Table as text) =>
+//     let
+//         _url = Diagnostics.LogValue("Application Server url", #"Application Server url"),
+//         _table = Diagnostics.LogValue("Get entities for", Table),
+// 
+//         /*
+//         loadType can be:
+//           * Default
+//           * Slim
+//           * ForeignDisplays
+//           * ForeignDisplaysForAllColumns
+//           * BulkReadOnly
+//           * LoadForeignDisplaysEvenWhenExpensive
+//         */
+//         _loadType = "BulkReadOnly",
+//         finaleURL = Uri.Combine(_url, _table) & "?" & Uri.BuildQueryString([loadType=_loadType]),
+// 
+//         _json = Json.Document(Web.Contents(finaleURL)),
+//         source = if Table.HasColumns(Table.FromRecords(_json), "values") then Table.FromRecords(Table.FromRecords(_json)[values]) else Table.FromRecords(_json)
+//     in
+//         source;
+// 
 [DataSource.Kind="IdentityManager", Publish="IdentityManager.Publish"]
-shared IdentityManager.Contents = (#"Application Server url" as text, Table as text) =>
+shared IdentityManager.Contents = (#"Application Server url" as text) =>
     let
         _url = Diagnostics.LogValue("Application Server url", #"Application Server url"),
-        _table = Diagnostics.LogValue("Get entities for", Table),
-
-        /*
-        loadType can be:
-          * Default
-          * Slim
-          * ForeignDisplays
-          * ForeignDisplaysForAllColumns
-          * BulkReadOnly
-          * LoadForeignDisplaysEvenWhenExpensive
-        */
-        _loadType = "BulkReadOnly",
-        finaleURL = Uri.Combine(_url, _table) & "?" & Uri.BuildQueryString([loadType=_loadType]),
-
-        _json = Json.Document(Web.Contents(finaleURL)),
-        source = if Table.HasColumns(Table.FromRecords(_json), "values") then Table.FromRecords(Table.FromRecords(_json)[values]) else Table.FromRecords(_json)
+        _json = Json.Document(Web.Contents(_url & "/api/doc")),
+        _host = Diagnostics.LogValue("Host: ", Uri.Parts(_url)[Host]),
+        _swaggerAPI = Record.AddField(_json, "host", _host),
+        source = OpenApi.Document(Binary.From(Json.FromValue(_swaggerAPI)))
     in
         source;
 
