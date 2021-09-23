@@ -1,5 +1,4 @@
-﻿// Use this file to write queries to test your data connector
-let
-    result = IdentityManager.Contents()
+﻿let
+    result = IdentityManager.Contents("http://w1/AppServer/api/entities/Person")
 in
     result

@@ -20,6 +20,7 @@
     <MaxRows>1000</MaxRows>
     <ExtensionProject>Yes</ExtensionProject>
     <Name>IdentityManager</Name>
+    <ThrowOnFoldingFailure>True</ThrowOnFoldingFailure>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>false</DebugSymbols>
