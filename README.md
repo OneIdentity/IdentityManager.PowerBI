@@ -10,6 +10,7 @@
     <li><a href="#quickstart">Quickstart</a></li>    
     <li><a href="#usage">Usage</a></li>
     <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#pitfalls">Pitfalls</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#resources">Resources</a></li>
   </ol>
@@ -75,6 +76,13 @@ Contributions are what make the open source community such an amazing place to b
 3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
+
+<!-- PITFALLS -->
+## Pitfalls
+
+* **This will only work with the upcoming Identiy Manager 8.2 release**. Any prior release will not work.
+* You have to assign an OAuth 2.0/OpenID connect application to the application server web app.
+* You have to assign the feature group `Enables access to the REST API in the application server.` to your final login account.
 
 <!-- LICENSE -->
 ## License
