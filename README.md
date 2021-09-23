@@ -43,27 +43,27 @@ Once the custom connector reaches it stable status, One Identity will be seeking
 
 Once the file `IdentityManager.mez` is in place you can load the custom data connector:
 
-![Identity Manager Power BI custom data connector loading](img\identity_manager_power_bi-_custom_data_connector_selection.png)
+![Identity Manager Power BI custom data connector loading](img/identity_manager_power_bi-_custom_data_connector_selection.png)
 
 As the Power BI Custom Connector for One Identity Manager is unsigned you will receive an error like this:
 
-![Identity Manager Power BI custom data connector security warning](img\identity_manager_power_bi-_custom_data_connector_security_warning.png)
+![Identity Manager Power BI custom data connector security warning](img/identity_manager_power_bi-_custom_data_connector_security_warning.png)
 
 When the connector is loaded you have to specify the URL for the Application Server and the table name you would like to query:
 
-![Identity Manager Power BI custom data connector parameters](img\identity_manager_power_bi-_custom_data_connector_parameter.png)
+![Identity Manager Power BI custom data connector parameters](img/identity_manager_power_bi-_custom_data_connector_parameter.png)
 
 At the first try you have to sign in
 
-![Identity Manager Power BI custom data connector sign in](img\identity_manager_power_bi-_custom_data_sign_in.png)
+![Identity Manager Power BI custom data connector sign in](img/identity_manager_power_bi-_custom_data_sign_in.png)
 
 The Secure Token Server is using OAuth2, therefore we just log into an domain
 
-![Identity Manager Power BI custom data connector oauth authentication](img\identity_manager_power_bi-_custom_data_connector_oauth.png)
+![Identity Manager Power BI custom data connector oauth authentication](img/identity_manager_power_bi-_custom_data_connector_oauth.png)
 
 After successful authentication and login we are able to retrieve a data preview
 
-![Identity Manager Power BI custom data connector data preview](img\identity_manager_power_bi-_custom_data_connector_data_preview.png)
+![Identity Manager Power BI custom data connector data preview](img/identity_manager_power_bi-_custom_data_connector_data_preview.png)
 
 <!-- CONTRIBUTING -->
 ## Contributing
