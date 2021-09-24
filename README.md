@@ -7,6 +7,7 @@
   <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
   <ol>
     <li><a href="#about-the-project">About the project</a></li>
+    <li><a href="#preview">A simple report preview</a></li>    
     <li><a href="#quickstart">Quickstart</a></li>    
     <li><a href="#usage">Usage</a></li>
     <li><a href="#contributing">Contributing</a></li>
@@ -29,7 +30,14 @@ The Power BI connector for One Identity Manager is built for replacing the requi
 
 Once the custom connector reaches it stable status, One Identity will be seeking certification by Microsoft.
 
-<!-- GETTING STARTED -->
+<!-- PREVIEW -->
+## A simple report preview
+
+Just one sample demo report by using the Power BI Custom Connector
+
+![Identity Manager Power BI custom data connector loading](img/identity_manager_power_bi_sample_report.png)
+
+<!-- QUICKSTART -->
 ## Quickstart
 
 1. Install [Microsoft Visual Studio 2019](https://visualstudio.microsoft.com/vs/)
