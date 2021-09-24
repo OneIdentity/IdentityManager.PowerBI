@@ -21,7 +21,7 @@
 
 This is a simple Power BI Custom Connector for [One Identity' Identity Manager](https://www.oneidentity.com/products/identity-manager/).
 
-Historically there never was a simple, centralized and widely used reporting solution available for customers. PowerBI is the first solution that gets a reach into customer organization and there is a trend that customers are going to use PowerBI as a central reporting engine. Even if One Identity Manager is based on a SQL Server database and PowerBI provding a SQL Server data source, with the raise of One Identity Manager OnDemand as well as more and more customer using SQL Manged Instance in Azure, SQL is not necessarily a protocol that can be used.
+Historically there never was a simple, centralized and widely used reporting solution available for customers. PowerBI is the first solution that gets a reach into customer organizations and there is a trend that customers are going to use PowerBI as a central reporting engine. Even if One Identity Manager is based on a SQL Server database and PowerBI is providing a SQL Server data source, with the raise of One Identity Manager OnDemand as well as more and more customers using SQL Managed Instance in Azure, SQL is not necessarily a protocol that can be used.
 
 The Power BI connector for One Identity Manager is built for replacing the requirement of direct SQL access to a One Identity Manager database. Instead the ReST API of the Application Server is used for connecting to a One Identity Manager. The benefits are
   - using https as a protocol instead of SQL
@@ -60,7 +60,7 @@ At the first try you have to sign in
 
 ![Identity Manager Power BI custom data connector sign in](img/identity_manager_power_bi-_custom_data_sign_in.png)
 
-The Secure Token Server is using OAuth2, therefore we just log into an domain
+The Secure Token Server is using OAuth2, therefore we just log into a domain
 
 ![Identity Manager Power BI custom data connector oauth authentication](img/identity_manager_power_bi-_custom_data_connector_oauth.png)
 
