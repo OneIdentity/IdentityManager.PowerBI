@@ -20,7 +20,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About the project
 
-This is a simple Power BI Custom Connector for [One Identity' Identity Manager](https://www.oneidentity.com/products/identity-manager/).
+This is a Power BI Custom Connector for [One Identity' Identity Manager](https://www.oneidentity.com/products/identity-manager/).
 
 Historically, there has never been a simple, centralized and widely used reporting solution for customers. PowerBI is the first solution to reach into customer organizations, and there is a trend for customers to use PowerBI as their central reporting engine. Even though One Identity Manager is based on a SQL Server database and PowerBI provides a SQL Server data source, with the rise of One Identity Manager OnDemand and more customers using SQL Managed Instance in Azure, SQL is not necessarily a protocol that can be used.
 
@@ -44,15 +44,15 @@ Just one sample demo report by using the Power BI Custom Connector:
 4. Compile the project
 5. Copy the resulting `IdentityManager.mez` file over to the machine running Microsoft Power BI Desktop
 6. If not already done, create a folder structure as `Power BI Desktop\Custom Connectors` under your documents directory (`C:\Users\<Your-Profile-Name>\Documents\`) and place the `IdentityManager.mez` file there
-7. Restart [Power BI Desktop](https://powerbi.microsoft.com/en-us/)
+7. Restart [Power BI Desktop](https://powerbi.microsoft.com/desktop)
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Obtain a `IdentityManager.mez` by building it as described in the [development quickstart](#development-quickstart) or download it from the [latest release](https://github.com/OneIdentity/IdentityManager.PowerBI/releases/latest).
+Obtain a `IdentityManager.mez` by building it as described in the [Development quickstart](#development-quickstart) or download it from the [latest release](https://github.com/OneIdentity/IdentityManager.PowerBI/releases/latest).
 Copy the file to `C:\Users\<Your-Profile-Name>\Documents\Power BI Desktop\Custom Connectors`.
 
-Once the file `IdentityManager.mez` is in place, you can load the Custom Connector:
+Once the file `IdentityManager.mez` is in place, you can load the Custom Connector in [Power BI Desktop](https://powerbi.microsoft.com/desktop):
 
 ![Identity Manager Power BI custom data connector loading](img/identity_manager_power_bi-_custom_data_connector_selection.png)
 
