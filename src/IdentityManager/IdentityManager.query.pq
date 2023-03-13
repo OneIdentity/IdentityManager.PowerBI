@@ -1,5 +1,4 @@
-﻿let
-    //result = IdentityManager.Contents("http://w1/AppServer/api/entities/", "Department")
-    result = IdentityManager.Contents("http://w1/appserver")
+﻿let    
+    result = IdentityManager.Contents("https://web.qs-lab.local/Appserver","https://web.qs-lab.local/RSTS")
 in
     result
