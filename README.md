@@ -49,7 +49,7 @@ Just one sample demo report by using the Power BI Custom Connector:
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Obtain a `IdentityManager.mez` by building it as described in the [Development quickstart](#development-quickstart) or download it from the [latest release](https://github.com/OneIdentity/IdentityManager.PowerBI/releases/latest).
+Obtain an `IdentityManager.mez` by building it as described in the [Development quickstart](#development-quickstart) or by downloading it from the [latest release](https://github.com/OneIdentity/IdentityManager.PowerBI/releases/latest).
 Copy the file to `C:\Users\<Your-Profile-Name>\Documents\Power BI Desktop\Custom Connectors`.
 
 Once the file `IdentityManager.mez` is in place, you can load the Custom Connector in [Power BI Desktop](https://powerbi.microsoft.com/desktop):
@@ -103,4 +103,4 @@ Distributed under the One Identity - Open Source License. See [LICENSE](LICENSE)
 <!-- RESOURCES -->
 ## Resources
 
-Custom connectors are written with the functional Power Query M formula language. A language reference can be found here [https://docs.microsoft.com/en-us/powerquery-m/](https://docs.microsoft.com/en-us/powerquery-m/)
+Custom connectors are written using the Power Query M functional formula language. A language reference can be found here [https://docs.microsoft.com/en-us/powerquery-m/](https://docs.microsoft.com/en-us/powerquery-m/)
