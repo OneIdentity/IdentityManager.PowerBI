@@ -36,18 +36,21 @@ Just one sample demo report by using the Power BI Custom Connector:
 ![Identity Manager Power BI custom data connector loading](img/identity_manager_power_bi_sample_report.png)
 
 <!-- Development QUICKSTART -->
-## Development Quickstart
+## Development quickstart
 
 1. Install [Microsoft Visual Studio 2019](https://visualstudio.microsoft.com/vs/)
 2. Install the [Power Query SDK](https://aka.ms/powerquerysdk) from the Visual Studio Marketplace
 3. Clone [this project](https://github.com/OneIdentity/IdentityManager.PowerBI)
 4. Compile the project
 5. Copy the resulting `IdentityManager.mez` file over to the machine running Microsoft Power BI Desktop
-6. If not already done, create a folder structure as `Microsoft Power BI Desktop\Custom Connectors` under your documents directory (`C:\Users\<Your-Profile-Name>\Documents\`) and place the `IdentityManager.mez` file there
+6. If not already done, create a folder structure as `Power BI Desktop\Custom Connectors` under your documents directory (`C:\Users\<Your-Profile-Name>\Documents\`) and place the `IdentityManager.mez` file there
 7. Restart [Power BI Desktop](https://powerbi.microsoft.com/en-us/)
 
 <!-- USAGE EXAMPLES -->
 ## Usage
+
+Obtain a `IdentityManager.mez` by building it as described in the [development quickstart](#development-quickstart) or download it from the [latest release](https://github.com/OneIdentity/IdentityManager.PowerBI/releases/latest).
+Copy the file to `C:\Users\<Your-Profile-Name>\Documents\Power BI Desktop\Custom Connectors`.
 
 Once the file `IdentityManager.mez` is in place, you can load the Custom Connector:
 
@@ -100,4 +103,4 @@ Distributed under the One Identity - Open Source License. See [LICENSE](LICENSE)
 <!-- RESOURCES -->
 ## Resources
 
-Custom data connectors are written with the functional Power Query M formula language. A language reference can be found here [https://docs.microsoft.com/en-us/powerquery-m/](https://docs.microsoft.com/en-us/powerquery-m/)
+Custom connectors are written with the functional Power Query M formula language. A language reference can be found here [https://docs.microsoft.com/en-us/powerquery-m/](https://docs.microsoft.com/en-us/powerquery-m/)
