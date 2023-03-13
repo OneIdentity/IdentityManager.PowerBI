@@ -8,7 +8,7 @@
   <ol>
     <li><a href="#about-the-project">About the project</a></li>
     <li><a href="#preview">A simple report preview</a></li>    
-    <li><a href="#quickstart">Quickstart</a></li>    
+    <li><a href="#development-quickstart">Quickstart</a></li>    
     <li><a href="#usage">Usage</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#pitfalls">Pitfalls</a></li>
@@ -35,7 +35,7 @@ Just one sample demo report by using the Power BI Custom Connector:
 
 ![Identity Manager Power BI custom data connector loading](img/identity_manager_power_bi_sample_report.png)
 
-<!-- QUICKSTART -->
+<!-- Development QUICKSTART -->
 ## Development Quickstart
 
 1. Install [Microsoft Visual Studio 2019](https://visualstudio.microsoft.com/vs/)
