@@ -90,7 +90,7 @@ Contributions are what make the open source community such an amazing place to b
 <!-- PITFALLS -->
 ## Pitfalls
 
-* **This will only work with Identiy Manager 8.2 and greater**. Any prior release will not work.
+* **This will only work with Identity Manager 8.2 and greater**. Any prior release will not work.
 * You must allow non-certified custom connectors in Power BI Desktop as shown [here](https://learn.microsoft.com/en-us/power-bi/connect-data/desktop-connector-extensibility#data-extension-security)
 * You must assign an OAuth 2.0/OpenID connect application to the application server web app as shown [here](https://support.oneidentity.com/de-de/technical-documents/identity-manager/9.1/authorization-and-authentication-guide/28#TOPIC-1872879)
 * You must assign the feature group `Enables access to the REST API in the application server.` to the login account used in the Custom Connector during the OAuth2 login process.
