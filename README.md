@@ -7,8 +7,8 @@
   <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
   <ol>
     <li><a href="#about-the-project">About the project</a></li>
-    <li><a href="#preview">A simple report preview</a></li>    
-    <li><a href="#development-quickstart">Quickstart</a></li>    
+    <li><a href="#a-simple-report-preview">A simple report preview</a></li>    
+    <li><a href="#development-quickstart">Development quickstart</a></li>    
     <li><a href="#usage">Usage</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#pitfalls">Pitfalls</a></li>
