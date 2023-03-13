@@ -8,7 +8,7 @@
   <ol>
     <li><a href="#about-the-project">About the project</a></li>
     <li><a href="#preview">A simple report preview</a></li>    
-    <li><a href="#quickstart">Quickstart</a></li>    
+    <li><a href="#development-quickstart">Quickstart</a></li>    
     <li><a href="#usage">Usage</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#pitfalls">Pitfalls</a></li>
@@ -22,57 +22,54 @@
 
 This is a simple Power BI Custom Connector for [One Identity' Identity Manager](https://www.oneidentity.com/products/identity-manager/).
 
-Historically there never was a simple, centralized and widely used reporting solution available for customers. PowerBI is the first solution that gets a reach into customer organizations and there is a trend that customers are going to use PowerBI as a central reporting engine. Even if One Identity Manager is based on a SQL Server database and PowerBI is providing a SQL Server data source, with the raise of One Identity Manager OnDemand as well as more and more customers using SQL Managed Instance in Azure, SQL is not necessarily a protocol that can be used.
+Historically, there has never been a simple, centralized and widely used reporting solution for customers. PowerBI is the first solution to reach into customer organizations, and there is a trend for customers to use PowerBI as their central reporting engine. Even though One Identity Manager is based on a SQL Server database and PowerBI provides a SQL Server data source, with the rise of One Identity Manager OnDemand and more customers using SQL Managed Instance in Azure, SQL is not necessarily a protocol that can be used.
 
-The Power BI connector for One Identity Manager is built for replacing the requirement of direct SQL access to a One Identity Manager database. Instead the ReST API of the Application Server is used for connecting to a One Identity Manager. The benefits are
+The Power BI connector for One Identity Manager is designed to replace the need for direct SQL access to a One Identity Manager database. Instead, it uses the application server's REST API to connect to a One Identity Manager database. The benefits are:
   - using https as a protocol instead of SQL
-  - by requiring a One Identity Manager authentication the permissions layer in One Identity Manager ensuring that users only get information they are supposed to see.
-
-Once the custom connector reaches it stable status, One Identity will be seeking certification by Microsoft.
+  - by requiring One Identity Manager authentication, the permissions layer in One Identity Manager ensures that users see only the information they are authorized to see
 
 <!-- PREVIEW -->
 ## A simple report preview
 
-Just one sample demo report by using the Power BI Custom Connector
+Just one sample demo report by using the Power BI Custom Connector:
 
 ![Identity Manager Power BI custom data connector loading](img/identity_manager_power_bi_sample_report.png)
 
-<!-- QUICKSTART -->
-## Quickstart
+<!-- Development QUICKSTART -->
+## Development Quickstart
 
 1. Install [Microsoft Visual Studio 2019](https://visualstudio.microsoft.com/vs/)
 2. Install the [Power Query SDK](https://aka.ms/powerquerysdk) from the Visual Studio Marketplace
 3. Clone [this project](https://github.com/OneIdentity/IdentityManager.PowerBI)
-4. Modify the values for `token_uri`, `authorize_uri` and `logout_uri` in file [IdentityManager.pq](https://github.com/OneIdentity/IdentityManager.PowerBI/blob/master/src/IdentityManager/IdentityManager.pq) to match your installation of the Secure Token Server (STS) which is part of the [One Identity' Identity Manager](https://www.oneidentity.com/products/identity-manager/)
-5. Compile the project
-6. Copy the resulting `IdentityManager.mez` file over to the machine running Microsoft Power BI Desktop
-7. If not already done, create a folder structure as `Microsoft Power BI Desktop\Custom Connectors` under your documents directory (`C:\Users\<Your-Profile-Name>\Documents\`) and place the `IdentityManager.mez` file there
-8. Restart [Power BI Desktop](https://powerbi.microsoft.com/en-us/)
+4. Compile the project
+5. Copy the resulting `IdentityManager.mez` file over to the machine running Microsoft Power BI Desktop
+6. If not already done, create a folder structure as `Microsoft Power BI Desktop\Custom Connectors` under your documents directory (`C:\Users\<Your-Profile-Name>\Documents\`) and place the `IdentityManager.mez` file there
+7. Restart [Power BI Desktop](https://powerbi.microsoft.com/en-us/)
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Once the file `IdentityManager.mez` is in place you can load the custom data connector:
+Once the file `IdentityManager.mez` is in place, you can load the Custom Connector:
 
 ![Identity Manager Power BI custom data connector loading](img/identity_manager_power_bi-_custom_data_connector_selection.png)
 
-As the Power BI Custom Connector for One Identity Manager is unsigned you will receive an error like this:
+Because the Power BI Custom Connector for One Identity Manager is unsigned, you receive an error like this:
 
 ![Identity Manager Power BI custom data connector security warning](img/identity_manager_power_bi-_custom_data_connector_security_warning.png)
 
-When the connector is loaded you have to specify the URL for the Application Server and the table name you would like to query:
+When the connector is loaded you have to specify the URL for the Application Server and the URL of the Redistributable Secure Token Server (RSTS):
 
 ![Identity Manager Power BI custom data connector parameters](img/identity_manager_power_bi-_custom_data_connector_parameter.png)
 
-At the first try you have to sign in
+You will need to log in the first time you try to make a connection:
 
 ![Identity Manager Power BI custom data connector sign in](img/identity_manager_power_bi-_custom_data_sign_in.png)
 
-The Secure Token Server is using OAuth2, therefore we just log into a domain
+The Secure Token Server uses OAuth2, so we just log in to a domain:
 
 ![Identity Manager Power BI custom data connector oauth authentication](img/identity_manager_power_bi-_custom_data_connector_oauth.png)
 
-After successful authentication and login we are able to retrieve a data preview
+After successfully authenticating and logging in, we see the following dialog. The Identity Manager Power BI Custom Connector uses OpenAPI to access all Application Server functions that can return data. All of these functions can be used in PowerBI queries:
 
 ![Identity Manager Power BI custom data connector data preview](img/identity_manager_power_bi-_custom_data_connector_data_preview.png)
 
@@ -90,9 +87,10 @@ Contributions are what make the open source community such an amazing place to b
 <!-- PITFALLS -->
 ## Pitfalls
 
-* **This will only work with the upcoming Identiy Manager 8.2 release**. Any prior release will not work.
-* You have to assign an OAuth 2.0/OpenID connect application to the application server web app.
-* You have to assign the feature group `Enables access to the REST API in the application server.` to your final login account.
+* **This will only work with Identiy Manager 8.2 and greater**. Any prior release will not work.
+* You must allow non-certified custom connectors in Power BI Desktop as shown [here](https://learn.microsoft.com/en-us/power-bi/connect-data/desktop-connector-extensibility#data-extension-security)
+* You must assign an OAuth 2.0/OpenID connect application to the application server web app as shown [here](https://support.oneidentity.com/de-de/technical-documents/identity-manager/9.1/authorization-and-authentication-guide/28#TOPIC-1872879)
+* You must assign the feature group `Enables access to the REST API in the application server.` to the login account used in the Custom Connector during the OAuth2 login process.
 
 <!-- LICENSE -->
 ## License

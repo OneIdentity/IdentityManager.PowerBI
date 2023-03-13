@@ -2,43 +2,64 @@
 
 client_id = "00000000-0000-0000-0000-000000000000";
 redirect_uri = "https://oauth.powerbi.com/views/oauthredirect.html";
-token_uri = "https://w1/RSTS/oauth2/token";
-authorize_uri = "https://w1/RSTS/Login";
-logout_uri = "https://w1/RSTS/Login?wa=wsignout1.0";
+token_uri_part = "/oauth2/token";
+authorize_uri_part = "/Login";
+logout_uri_part = "/Login?wa=wsignout1.0";
 
 windowWidth = 720;
 windowHeight = 500;
  
 [DataSource.Kind="IdentityManager", Publish="IdentityManager.Publish"]
-shared IdentityManager.Contents = (#"Application Server url" as text) =>
-    let
-        _url = Diagnostics.LogValue("Application Server url", #"Application Server url"),
-        _finalUrl = Diagnostics.LogValue("Final URL", _url & "/api/doc"),
-        _host = Diagnostics.LogValue("Host", Uri.Parts(_url)[Host]),
+shared IdentityManager.Contents = Value.ReplaceType(ContentsImpl, AuthType);
+
+AuthType = type function(
+     AppServerURL as (type text meta [
+        Documentation.FieldCaption = "Application Server URL",
+        Documentation.FieldDescription = "URL to One Identity Application Server",
+        Documentation.SampleValues = {"https://websrv.local/AppServer"}
+     ]),
+    IssuerAuthUrl as (type text meta [
+        Documentation.FieldCaption = "RSTS Server URL",
+        Documentation.FieldDescription = "URL to One Identity Redistributable Secure Token Server (RSTS). Required for OAuth 2.0",
+        Documentation.SampleValues = {"https://websrv.local/RSTS"}
+    ])
+    )
+    as table meta [
+        Documentation.Name = "Identity Manager RSTS OAuth2 Connector"
+    ];
+
+ContentsImpl = (AppServerURL as text, IssuerAuthUrl as text) =>
+    let        
+        _finalUrl = Diagnostics.LogValue("Final URL", AppServerURL & "/api/doc"),
+        _host = Diagnostics.LogValue("Host", Uri.Parts(AppServerURL)[Host]),
         _swaggerDefinition = Json.Document(Web.Contents(_finalUrl)),
         _swaggerDefinitionWithHost = Record.AddField(_swaggerDefinition, "host", _host),
         source = OpenApi.Document(Binary.From(Json.FromValue(_swaggerDefinitionWithHost)))
     in
         source;
 
+// Data Source definition
 IdentityManager = [
-    TestConnection = (dataSourcePath) => { "IdentityManager.Contents", dataSourcePath },
+    TestConnection = (AppServerURL, IssuerAuthUrl) => { "IdentityManager.Contents", AppServerURL, IssuerAuthUrl },
 
     Authentication = [
         OAuth = [
             StartLogin=StartLogin,
             FinishLogin=FinishLogin,
             Refresh=Refresh,
-            Logout=Logout
+            Logout=Logout,
+            Label = "OAuth 2.0"
         ]
     ],
 
     Label = Extension.LoadString("DataSourceLabel")
 ];
 
+//OAuth2 Login Method
 StartLogin = (resourceUrl, state, display) =>
     let
-        authorizeUrl = authorize_uri & "?" & Uri.BuildQueryString([
+        inputData = Json.Document(resourceUrl),
+        authorizeUrl = inputData[IssuerAuthUrl] & authorize_uri_part & "?" & Uri.BuildQueryString([
             response_type = "code",
             client_id = client_id,  
             redirect_uri = redirect_uri,
@@ -53,22 +74,26 @@ StartLogin = (resourceUrl, state, display) =>
             Context = null
         ];
 
-FinishLogin = (context, callbackUri, state) =>
-    let
+//OAuth2 Finish Login Method
+FinishLogin = (clientApplication, resourceUrl, context, callbackUri, state) =>
+    let        
         parts = Uri.Parts(callbackUri)[Query],
         
         result = if (Record.HasFields(parts, {"error", "error_description"})) then 
                     error Error.Record(parts[error], parts[error_description], parts)
                  else
-                    TokenMethod("authorization_code", "code", parts[code])
+                    TokenMethod(resourceUrl, "authorization_code", "code", parts[code])
     in
         result;
 
-Refresh = (resourceUrl, refresh_token) => TokenMethod("refresh_token", "refresh_token", refresh_token);
+//OAuth2 Refresh Token Method
+Refresh = (resourceUrl, refresh_token) => TokenMethod(resourceUrl, "refresh_token", "refresh_token", refresh_token);
 
-Logout = (token) => logout_uri;
-
-TokenMethod = (grantType, tokenField, code) =>
+//OAuth2 Logout Method
+Logout = (clientApplication, resourceUrl, accessToken) => Json.Document(resourceUrl)[IssuerAuthUrl] & logout_uri_part ;
+            
+//OAuth2 Token retrieval
+TokenMethod = (resourceUrl, grantType, tokenField, code) =>
     let
         queryString = [
             grant_type = "authorization_code",
@@ -77,7 +102,8 @@ TokenMethod = (grantType, tokenField, code) =>
         ],
         queryWithCode = Record.AddField(queryString, tokenField, code),
 
-        tokenResponse = Web.Contents(token_uri, [
+        inputData = Json.Document(resourceUrl),
+        tokenResponse = Web.Contents(inputData[IssuerAuthUrl] & token_uri_part,  [
             Content = Text.ToBinary(Uri.BuildQueryString(queryWithCode)),
             Headers = [
                 #"Content-type" = "application/x-www-form-urlencoded",
@@ -94,7 +120,7 @@ TokenMethod = (grantType, tokenField, code) =>
         result;
 
 IdentityManager.Publish = [
-    Beta = true,
+    Beta = false,
     Category = "Other",
     ButtonText = { Extension.LoadString("ButtonTitle"), Extension.LoadString("ButtonHelp") },
     LearnMoreUrl = "https://github.com/OneIdentity/IdentityManager.PowerBI",

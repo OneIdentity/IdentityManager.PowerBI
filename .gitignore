@@ -1,6 +1,7 @@
 # User-specific files
 *.rsuser
 *.suo
+*.wsuo
 *.user
 *.userosscache
 *.sln.docstates
@@ -53,6 +54,7 @@ bld/
 *.pidb
 *.svclog
 *.scc
+.vs/
 
 # Business Intelligence projects
 *.rdl.data

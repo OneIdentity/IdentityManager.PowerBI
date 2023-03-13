@@ -1,12 +1,11 @@
-﻿<Project DefaultTargets="BuildExtension" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project DefaultTargets="CopyToDocumentsFolder" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>
-    </ProjectGuid>
+    <ProjectGuid>{35467eb6-e27e-490c-9437-d7fcc81a1468}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>MyRootNamespace</RootNamespace>
-    <AssemblyName>MyAssemblyName</AssemblyName>
+    <RootNamespace>IdentityManager.PowerBI</RootNamespace>
+    <AssemblyName>IdentityManager.PowerBI</AssemblyName>
     <EnableUnmanagedDebugging>False</EnableUnmanagedDebugging>
     <AllowNativeQuery>False</AllowNativeQuery>
     <AsAction>False</AsAction>
@@ -100,6 +99,10 @@
 ]]></Code>
     </Task>
   </UsingTask>
+  <Target Name ="CopyToDocumentsFolder" DependsOnTargets="BuildExtension">
+    <MakeDir Directories="$(USERPROFILE)\Documents\Power BI Desktop\Custom Connectors" />
+    <Copy SourceFiles="$(OutputPath)\$(ProjectName).mez" DestinationFolder="$(USERPROFILE)\Documents\Power BI Desktop\Custom Connectors" />
+  </Target>
   <Target Name="BuildExtension" DependsOnTargets="ExtensionClean">
     <ItemGroup>
       <PQFiles Include="@(Compile)" Condition="'%(Extension)' == '.pq'" />
