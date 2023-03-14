@@ -38,8 +38,8 @@ Just one sample demo report by using the Power BI Custom Connector:
 <!-- Development QUICKSTART -->
 ## Development quickstart
 
-1. Install [Microsoft Visual Studio 2019](https://visualstudio.microsoft.com/vs/)
-2. Install the [Power Query SDK](https://aka.ms/powerquerysdk) from the Visual Studio Marketplace
+1. Install [Microsoft Visual Studio 2019](https://learn.microsoft.com/en-us/visualstudio/releases/2019/release-notes)
+2. Install the [Power Query SDK](https://learn.microsoft.com/en-us/power-query/install-sdk) from the Visual Studio Marketplace
 3. Clone [this project](https://github.com/OneIdentity/IdentityManager.PowerBI)
 4. Compile the project
 5. Copy the resulting `IdentityManager.mez` file over to the machine running Microsoft Power BI Desktop
