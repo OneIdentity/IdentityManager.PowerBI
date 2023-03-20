@@ -18,7 +18,7 @@
     <SuppressCellErrors>False</SuppressCellErrors>
     <MaxRows>1000</MaxRows>
     <ExtensionProject>Yes</ExtensionProject>
-    <Name>IdentityManager</Name>
+    <Name>IdentityManagerAzure</Name>
     <ThrowOnFoldingFailure>True</ThrowOnFoldingFailure>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -37,7 +37,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IdentityManager.pq">
+    <Compile Include="IdentityManagerAzure.pq">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="IdentityManager16.png">
@@ -67,7 +67,7 @@
     <Compile Include="resources.resx">
       <SubType>Code</SubType>
     </Compile>
-    <Content Include="IdentityManager.query.pq">
+    <Content Include="IdentityManagerAzure.query.pq">
       <SubType>Code</SubType>
     </Content>
   </ItemGroup>

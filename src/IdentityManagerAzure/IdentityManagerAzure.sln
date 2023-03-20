@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31702.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{4DF76451-A46A-4C0B-BE03-459FAAFA07E6}") = "IdentityManagerAzure", "IdentityManagerAzure.mproj", "{35467EB6-E27E-490C-9437-D7FCC81A1468}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{35467EB6-E27E-490C-9437-D7FCC81A1468}.Debug|x86.ActiveCfg = Debug|x86
+		{35467EB6-E27E-490C-9437-D7FCC81A1468}.Debug|x86.Build.0 = Debug|x86
+		{35467EB6-E27E-490C-9437-D7FCC81A1468}.Release|x86.ActiveCfg = Release|x86
+		{35467EB6-E27E-490C-9437-D7FCC81A1468}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {53E3CE58-E0AB-4F54-9F02-8E1FAAB2175F}
+	EndGlobalSection
+EndGlobal

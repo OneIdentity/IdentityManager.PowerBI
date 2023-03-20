@@ -1,16 +1,13 @@
-﻿section IdentityManager;
+﻿section IdentityManagerAzure;
 
-client_id = "00000000-0000-0000-0000-000000000000";
+logout_uri = "https://login.microsoftonline.com/logout.srf";
 redirect_uri = "https://oauth.powerbi.com/views/oauthredirect.html";
-token_uri_part = "/oauth2/token";
-authorize_uri_part = "/Login";
-logout_uri_part = "/Login?wa=wsignout1.0";
 
 windowWidth = 720;
 windowHeight = 500;
  
-[DataSource.Kind="IdentityManager", Publish="IdentityManager.Publish"]
-shared IdentityManager.Contents = Value.ReplaceType(ContentsImpl, AuthType);
+[DataSource.Kind="IdentityManagerAzure", Publish="IdentityManagerAzure.Publish"]
+shared IdentityManagerAzure.Contents = Value.ReplaceType(ContentsImpl, AuthType);
 
 AuthType = type function(
      AppServerURL as (type text meta [
@@ -19,16 +16,31 @@ AuthType = type function(
         Documentation.SampleValues = {"https://websrv.local/AppServer"}
      ]),
     IssuerAuthUrl as (type text meta [
-        Documentation.FieldCaption = "RSTS Server URL",
-        Documentation.FieldDescription = "URL to One Identity Redistributable Secure Token Server (RSTS). Required for OAuth 2.0",
-        Documentation.SampleValues = {"https://websrv.local/RSTS"}
+        Documentation.FieldCaption = "Authorization URL",
+        Documentation.FieldDescription = "Required for OAuth 2.0",
+        Documentation.SampleValues = {"https://login.microsoftonline.com/000ac08f-bcb7-4e5b-9ebf-cd0052e4b500/oauth2/v2.0/authorize"}
+    ]),
+    IssuerTokenUrl as (type text meta [
+        Documentation.FieldCaption = "Token URL",
+        Documentation.FieldDescription = "Required for OAuth 2.0",
+        Documentation.SampleValues = {"https://login.microsoftonline.com/000ac08f-bcb7-4e5b-9ebf-cd0052e4b500/oauth2/v2.0/token"}
+    ]),
+    ClientID as (type text meta [
+        Documentation.FieldCaption = "Client ID",
+        Documentation.FieldDescription = "Required for OAuth 2.0",
+        Documentation.SampleValues = {"80cba6a5-bef4-4aad-a2bc-4bf76cc051cd"}
+    ]),
+    ClientSecret as (type text meta [
+        Documentation.FieldCaption = "Client Secret",
+        Documentation.FieldDescription = "Required for OAuth 2.0",
+        Documentation.SampleValues = {"hJD8Q~sOysYOFUpX0FSMhN6A2mxqcE~pX7ZShcSY"}
     ])
     )
     as table meta [
-        Documentation.Name = "Identity Manager RSTS OAuth2 Connector"
+        Documentation.Name = "Identity Manager Azure OAuth2 Connector"
     ];
 
-ContentsImpl = (AppServerURL as text, IssuerAuthUrl as text) =>
+ContentsImpl = (AppServerURL as text, IssuerAuthUrl as text, IssuerTokenUrl as text, ClientID as text, ClientSecret as text) =>
     let        
         _finalUrl = AppServerURL & "/api/doc",
         _host = Uri.Parts(AppServerURL)[Host],
@@ -39,8 +51,8 @@ ContentsImpl = (AppServerURL as text, IssuerAuthUrl as text) =>
         source;
 
 // Data Source definition
-IdentityManager = [
-    TestConnection = (AppServerURL, IssuerAuthUrl) => { "IdentityManager.Contents", AppServerURL, IssuerAuthUrl },
+IdentityManagerAzure = [
+    TestConnection = (AppServerURL,IssuerAuthUrl,IssuerTokenUrl,ClientID,ClientSecret) => { "IdentityManagerAzure.Contents", AppServerURL,IssuerAuthUrl,IssuerTokenUrl,ClientID,ClientSecret },
 
     Authentication = [
         OAuth = [
@@ -59,9 +71,12 @@ IdentityManager = [
 StartLogin = (resourceUrl, state, display) =>
     let
         inputData = Json.Document(resourceUrl),
-        authorizeUrl = inputData[IssuerAuthUrl] & authorize_uri_part & "?" & Uri.BuildQueryString([
+        clientId = inputData[ClientID],
+        authUrl = inputData[IssuerAuthUrl],
+        authorizeUrl = authUrl & "?" & Uri.BuildQueryString([
             response_type = "code",
-            client_id = client_id,  
+            scope = "openid email",
+            client_id = clientId,  
             redirect_uri = redirect_uri,
             state = state
         ])
@@ -90,20 +105,24 @@ FinishLogin = (clientApplication, resourceUrl, context, callbackUri, state) =>
 Refresh = (resourceUrl, refresh_token) => TokenMethod(resourceUrl, "refresh_token", "refresh_token", refresh_token);
 
 //OAuth2 Logout Method
-Logout = (clientApplication, resourceUrl, accessToken) => Json.Document(resourceUrl)[IssuerAuthUrl] & logout_uri_part ;
+Logout = (clientApplication, resourceUrl, accessToken) => logout_uri ;
             
 //OAuth2 Token retrieval
 TokenMethod = (resourceUrl, grantType, tokenField, code) =>
     let
+        inputData = Json.Document(resourceUrl),
+        clientId = inputData[ClientID],
+        clientSecret = inputData[ClientSecret],
+        tokenUrl =  inputData[IssuerTokenUrl],
         queryString = [
             grant_type = "authorization_code",
             redirect_uri = redirect_uri,
-            client_id = client_id
+            client_id = clientId,
+            client_secret = clientSecret
         ],
         queryWithCode = Record.AddField(queryString, tokenField, code),
-
-        inputData = Json.Document(resourceUrl),
-        tokenResponse = Web.Contents(inputData[IssuerAuthUrl] & token_uri_part,  [
+        
+        tokenResponse = Web.Contents(tokenUrl,  [
             Content = Text.ToBinary(Uri.BuildQueryString(queryWithCode)),
             Headers = [
                 #"Content-type" = "application/x-www-form-urlencoded",
@@ -119,16 +138,16 @@ TokenMethod = (resourceUrl, grantType, tokenField, code) =>
     in
         result;
 
-IdentityManager.Publish = [
+IdentityManagerAzure.Publish = [
     Beta = false,
     Category = "Other",
     ButtonText = { Extension.LoadString("ButtonTitle"), Extension.LoadString("ButtonHelp") },
     LearnMoreUrl = "https://github.com/OneIdentity/IdentityManager.PowerBI",
-    SourceImage = IdentityManager.Icons,
-    SourceTypeImage = IdentityManager.Icons
+    SourceImage = IdentityManagerAzure.Icons,
+    SourceTypeImage = IdentityManagerAzure.Icons
 ];
 
-IdentityManager.Icons = [
+IdentityManagerAzure.Icons = [
     Icon16 = { Extension.Contents("IdentityManager16.png"), Extension.Contents("IdentityManager20.png"), Extension.Contents("IdentityManager24.png"), Extension.Contents("IdentityManager32.png") },
     Icon32 = { Extension.Contents("IdentityManager32.png"), Extension.Contents("IdentityManager40.png"), Extension.Contents("IdentityManager48.png"), Extension.Contents("IdentityManager64.png") }
 ];
