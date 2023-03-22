@@ -1,11 +1,11 @@
-# Setting up Azure OAuth2 authentication for One Identity Manager and Power BI custom connector
+# Setting up Azure OAuth2 authentication for One Identity Manager and Power BI Custom Connector
 
 <details open="open">
   <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
   <ol>
     <li><a href="#setting-up-an-azure-ad-app-registration">Setting up an Azure AD App registration</a></li>
     <li><a href="#setting-up-one-identity-manager">Setting up One Identity Manager</a></li>    
-    <li><a href="#setting-up-the-power-bi-custom-connector">Setting up the Power BI custom connector</a></li>    
+    <li><a href="#setting-up-the-power-bi-custom-connector">Setting up the Power BI Custom Connector</a></li>    
   </ol>
 </details>
 
@@ -54,11 +54,11 @@ The final result must look like shown below.<br>
 - Commit the changes to the database.
 - Make sure that there is an identity in the One Identity Manager database that has the default email address of the Azure AD user account that you want to use for your Azure login in the Power BI connector. Also, make sure that this identity has sufficient permissions to deliver the data that you want to present in Power BI.
 
-## Setting up the Power BI custom connector
+## Setting up the Power BI Custom Connector
 
-- If you are using the Azure version of the Power BI custom connector, you will see a connection dialog box with more input fields.<br>
+- If you are using the Azure version of the Power BI Custom Connector, you will see a connection dialog box with more input fields.<br>
 ![power bi connector 1](img/powerBiConnector1.png)
-- The **Application Server URL** is the same as you would use with the RSTS version of the custom connector.
+- The **Application Server URL** is the same as you would use with the RSTS version of the Custom Connector.
 - The **Authorization URL** is the **OAuth 2.0 authorization endpoint** that we have copied above.
 - The **Token URL** is the **OAuth 2.0 token endpoint** that we have copied above.
 - The **Client ID** is the **Application (client) ID** that we have copied above.

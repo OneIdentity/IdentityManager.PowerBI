@@ -10,8 +10,8 @@
     <li><a href="#a-simple-report-preview">A simple report preview</a></li>    
     <li><a href="#development-quickstart">Development quickstart</a></li>    
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#contributing">Contributing</a></li>
     <li><a href="#pitfalls">Pitfalls</a></li>
+    <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#resources">Resources</a></li>
   </ol>
@@ -78,6 +78,15 @@ After successfully authenticating and logging in, we see the following dialog. T
 
 ![Identity Manager Power BI custom data connector data preview](img/identity_manager_power_bi-_custom_data_connector_data_preview.png)
 
+
+<!-- PITFALLS -->
+## Pitfalls
+
+* **This will only work with Identity Manager 8.2 and greater**. Any prior release will not work.
+* You must allow non-certified custom connectors in Power BI Desktop as shown [here](https://learn.microsoft.com/en-us/power-bi/connect-data/desktop-connector-extensibility#data-extension-security)
+* You must assign an OAuth 2.0/OpenID connect application to the application server web app as shown [here](https://support.oneidentity.com/de-de/technical-documents/identity-manager/9.1/authorization-and-authentication-guide/28#TOPIC-1872879)
+* You must assign the feature group `Enables access to the REST API in the application server.` to the One Identity Manager identity that is used to log in to the application server in the OAuth2 login process in the Custom Connector.
+
 <!-- CONTRIBUTING -->
 ## Contributing
 
@@ -88,14 +97,6 @@ Contributions are what make the open source community such an amazing place to b
 3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
-
-<!-- PITFALLS -->
-## Pitfalls
-
-* **This will only work with Identity Manager 8.2 and greater**. Any prior release will not work.
-* You must allow non-certified custom connectors in Power BI Desktop as shown [here](https://learn.microsoft.com/en-us/power-bi/connect-data/desktop-connector-extensibility#data-extension-security)
-* You must assign an OAuth 2.0/OpenID connect application to the application server web app as shown [here](https://support.oneidentity.com/de-de/technical-documents/identity-manager/9.1/authorization-and-authentication-guide/28#TOPIC-1872879)
-* You must assign the feature group `Enables access to the REST API in the application server.` to the login account used in the Custom Connector during the OAuth2 login process.
 
 <!-- LICENSE -->
 ## License
