@@ -63,5 +63,5 @@ The final result must look like shown below.<br>
 - The **Token URL** is the **OAuth 2.0 token endpoint** that we have copied above.
 - The **Client ID** is the **Application (client) ID** that we have copied above.
 - The **Client Secret** is the client secret that we have created and copied above.
-- After that, the Azure login process starts. Make sure that you log in to Azure with the Azure AD user whose email address is stored in the Default email address property of the One Identity Manager identity, which should be used to log in to the application server.<br>
+- After that, the Azure login process starts. Make sure that you log in to Azure with the Azure AD user whose email address is stored in the Default email address property of the One Identity Manager identity, which should be used to log in to the application server.<br><br>
 ![power bi connector 1](img/powerBiConnector2.png)
