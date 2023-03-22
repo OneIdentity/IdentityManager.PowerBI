@@ -52,6 +52,8 @@ Just one sample demo report by using the Power BI Custom Connector:
 Obtain an `IdentityManager.mez` by building it as described in the [Development quickstart](#development-quickstart) or by downloading it from the [latest release](https://github.com/OneIdentity/IdentityManager.PowerBI/releases/latest).
 Copy the file to `C:\Users\<Your-Profile-Name>\Documents\Power BI Desktop\Custom Connectors`.
 
+There is also a second version of the connector called `IdentityManagerAzure.mez` which supports Azure OAuth 2.0 login. Please read [these](src/IdentityManagerAzure/README.md) instructions to use your Azure login instead of the One Identity RSTS server login.
+
 Once the file `IdentityManager.mez` is in place, you can load the Custom Connector in [Power BI Desktop](https://powerbi.microsoft.com/desktop):
 
 ![Identity Manager Power BI custom data connector loading](img/identity_manager_power_bi-_custom_data_connector_selection.png)
