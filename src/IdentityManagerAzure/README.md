@@ -44,7 +44,7 @@ The final result must look like shown below.<br>
 - Click **Next** on the **Configure certificates** page.
 - Complete the **Search rule for user data** page like shown below and click **Next**.
 ![new identity provider 2](img/newIdentityProvider2.png)
-- If you have already fully synchronized your Azure AD tenant to the One Identity Manager database, it is also possible to use **AADUser - Mail** as the **Column to search**. In this case, make sure that the person (identity) that is assigned to the AADUser has sufficient permissions to log on to the application server and read the data that you want to read.
+- If you have already fully synchronized your Azure AD tenant to the One Identity Manager database, it is also possible to use **AADUser - Mail** as the **Column to search**. In this case, make sure that the person (identity) that is assigned to the AADUser has sufficient permissions to log on to the application server and read the data that you want to read using the REST API.
 - On the page **Create OAuth 2.0/OpenID Connect applications** we need to create a new application. The name can be freely chosen. The field **Client ID** must be filled with the **Application (client) ID** that we copied above.<br>
 ![new identity provider 3](img/newIdentityProvider3.png)
 - Click **Next** and finish the wizard.
@@ -55,7 +55,7 @@ The final result must look like shown below.<br>
 - Go to **Base Data** -> **General** -> **Configuartion parameters** and activate 
 **QBM/AppServer/AccessTokenAuth** and **QBM/AppServer/AccessTokenAuth/RoleBased**.
 - Commit the changes to the database.
-- Make sure that there is a person (identity) in the One Identity Manager database that has the Person.DefaultEmailAddress (or AADUser.Mail) property set to the email address of the Azure AD user account that you want to use for your Azure login in the Power BI connector. Also, make sure that this person (identity)has sufficient permissions to deliver the data that you want to present in Power BI.
+- Make sure that there is a person (identity) in the One Identity Manager database that has the Person.DefaultEmailAddress (or AADUser.Mail) property set to the email address of the Azure AD user account that you want to use for your Azure login in the Power BI connector. Also, make sure that this person (identity)has sufficient permissions to read the data that you want to present in Power BI using the application server's REST API.
 
 ## Setting up the Power BI Custom Connector
 
@@ -66,5 +66,5 @@ The final result must look like shown below.<br>
 - The **Token URL** is the **OAuth 2.0 token endpoint** that we have copied above.
 - The **Client ID** is the **Application (client) ID** that we have copied above.
 - The **Client Secret** is the client secret that we have created and copied above.
-- After that, the Azure login process starts. Make sure that you log in to Azure with the Azure AD user whose email address is stored in the Person.DefaultEmailAddress (or AADUser.Mail) property of the One Identity Manager person (identity) that should be used to log in to the application server.<br><br>
+- After that, the Azure login process starts. Make sure that you log in to Azure with the Azure AD user whose email address is stored in the Person.DefaultEmailAddress (or AADUser.Mail) property of the One Identity Manager person (identity) that should be used to log in to the application server and read data using REST API.<br><br>
 ![power bi connector 1](img/powerBiConnector2.png)
