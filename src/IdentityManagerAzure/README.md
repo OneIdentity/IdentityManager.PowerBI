@@ -42,7 +42,7 @@ The final result must look like shown below.<br>
 ![new identity provider](img/newIdentityProvider.png)
 - Click **Next** on the **Configuration data** page.
 - Click **Next** on the **Configure certificates** page.
-- Complete the **Search rule for user data** page like shown below and click **Next**.
+- Complete the **Search rule for user data** page as shown below and click **Next**.
 ![new identity provider 2](img/newIdentityProvider2.png)
 - If you have already fully synchronized your Azure AD tenant to the One Identity Manager database, it is also possible to use **AADUser - Mail** as the **Column to search**. In this case, make sure that the person (identity) that is assigned to the AADUser has sufficient permissions to log on to the application server and read the data that you want to read using the REST API.
 - On the page **Create OAuth 2.0/OpenID Connect applications** we need to create a new application. The name can be freely chosen. The field **Client ID** must be filled with the **Application (client) ID** that we copied above.<br>
@@ -55,7 +55,7 @@ The final result must look like shown below.<br>
 - Go to **Base Data** -> **General** -> **Configuartion parameters** and activate 
 **QBM/AppServer/AccessTokenAuth** and **QBM/AppServer/AccessTokenAuth/RoleBased**.
 - Commit the changes to the database.
-- Make sure that there is a person (identity) in the One Identity Manager database that has the Person.DefaultEmailAddress (or AADUser.Mail) property set to the email address of the Azure AD user account that you want to use for your Azure login in the Power BI connector. Also, make sure that this person (identity)has sufficient permissions to read the data that you want to present in Power BI using the application server's REST API.
+- Make sure that there is a person (identity) in the One Identity Manager database that has the Person.DefaultEmailAddress (or AADUser.Mail) property set to the email address of the Azure AD user account that you want to use for your Azure login in the Power BI connector. Also, make sure that this person (identity) has sufficient permissions to read the data that you want to present in Power BI using the application server's REST API.
 
 ## Setting up the Power BI Custom Connector
 
