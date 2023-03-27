@@ -86,7 +86,7 @@ After successfully authenticating and logging in, we see the following dialog. T
 * You must allow non-certified custom connectors in Power BI Desktop as shown [here](https://learn.microsoft.com/en-us/power-bi/connect-data/desktop-connector-extensibility#data-extension-security)
 * You need to assign an OAuth 2.0/OpenID connect application to the web application of the application server in the One Identity Manager Designer, as shown [here](https://support.oneidentity.com/de-de/technical-documents/identity-manager/9.1/authorization-and-authentication-guide/28#TOPIC-1872879). If you are using the One Identity RSTS server, you must assign the OAuth 2.0/OpenID connect application of the RSTS server to the application server.
 * You must activate **Role Bases Access Token Auth** in the One Identity Manager Designer configuaration parameters, as shown [here](https://support.oneidentity.com/de-de/technical-documents/identity-manager/9.1/authorization-and-authentication-guide/29#TOPIC-1872884)
-* You must assign the feature group `Enables access to the REST API in the application server.` to the One Identity Manager identity that is used to log in to the application server in the OAuth2 login process in the Custom Connector.
+* You must assign the feature group `Enables access to the REST API in the application server.` to the One Identity Manager person (identity) that is used to log in to the application server in the OAuth2 login process in the Custom Connector.
 
 <!-- CONTRIBUTING -->
 ## Contributing
