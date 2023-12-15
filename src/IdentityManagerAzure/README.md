@@ -12,7 +12,7 @@
 ## Setting up an Azure AD App registration
 
 - Log in to [Azure Portal](https://portal.azure.com).
-- Choose **Azure Active Diretory** -> **App registrations**.
+- Choose **Microsoft Entra ID** -> **App registrations**.
 - Click on **New registration**.
 - Complete the form like shown below.<br>Use the Web redirect URI `https://oauth.powerbi.com/views/oauthredirect.html`<br>
 ![register app](img/registerAADApp.png)
